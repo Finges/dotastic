@@ -18,6 +18,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+  gem 'compass-rails'
+  gem 'zurb-foundation', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
@@ -30,11 +32,14 @@ gem 'jbuilder', '~> 1.2'
 group :test, :development do
   gem 'rspec-rails'
   gem 'pry-rails'
+  gem 'factory_girl_rails', '~> 4.2.0'
+  gem 'factory_girl', '~> 4.2.0'
 end
 
 group :test do
   gem 'capybara'
 end
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
