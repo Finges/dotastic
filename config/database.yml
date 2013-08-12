@@ -17,7 +17,11 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: dotastic_development
+  host: <%= ENV['DOTASTIC_DEV_HOST'] %>
+  port: <%= ENV['DOTASTIC_DEV_PORT'] %>
+  database: <%= ENV['DOTASTIC_DEV_DATABASE'] %>
+  user: <%= ENV['DOTASTIC_DEV_USER'] %>
+  password: <%= ENV['DOTASTIC_DEV_PASSWORD'] %>
   pool: 5
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -44,6 +48,8 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: dotastic_test
-  pool: 5
-
+  host: <%= ENV['DOTASTIC_TEST_HOST'] %>
+  port: <%= ENV['DOTASTIC_TEST_PORT'] %>
+  database: <%= ENV['DOTASTIC_TEST_DATABASE'] %>
+  user: <%= ENV['DOTASTIC_TEST_USER'] %>
+  password: <%= ENV['DOTASTIC_TEST_PASSWORD'] %>

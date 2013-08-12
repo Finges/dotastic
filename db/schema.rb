@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130805210652) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "todos", force: true do |t|
     t.string   "todo"
     t.string   "tags"
