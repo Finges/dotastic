@@ -1,4 +1,5 @@
 class TodosController < ApplicationController
+  before_action :set_todo, only: [:show, :edit, :destroy, :update]
   def index
     @todos = Todo.all
   end
@@ -48,5 +49,12 @@ class TodosController < ApplicationController
   private
   def todo_params
     params.require(:todo).permit(:todo)
+  end
+
+  def set_todo
+    @todo = Todo.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "The todo you are looking for could not be found."
+    redirect_to todos_path
   end
 end
