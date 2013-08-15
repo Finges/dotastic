@@ -21,14 +21,35 @@
   </head>
 
   <body>
-    <%= flash.each do |key, value| %>
-      <div data-alert class='flash' id='<%= key %>'>
-        <%= value %>
-      </div>
-    <% end %>
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name">
+        <h1><%= link_to "Todotastic!", "/" %></h1>
+        </li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <% if current_user %>
+            <li class="divider"></li>
+            <li><%= link_to "#{current_user.nickname}, Sign out", signout_path %></li>
+          <% else %>
+            <li >
+               <%= link_to "Sign in via Github", "/auth/github" %>
+            </li>
+            <% end %>
+        </ul>
+      </section>
+    </nav>
+    <div class="row">
+      <% flash.each do |key, value| %>
+        <div data-alert class='alert-box' id='<%= key %>'>
+          <%= value %>
+          <a href="" class='close'>&times;</a>
+        </div>
+      <% end %>
 
-    <%= yield %>
-
+      <%= yield %>
+    </div>
     <%= javascript_include_tag "application" %>
   </body>
 </html>

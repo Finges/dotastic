@@ -2,6 +2,9 @@ Dotastic::Application.routes.draw do
   root 'todos#index'
 
   resources :todos
+  match 'auth/:providers/callback', to: 'sessions#create', via: :get
+  match 'auth/failure', to: redirect("/"), via: :get
+  match 'signout', to: 'sessions#destroy', via: :get, as: 'signout'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

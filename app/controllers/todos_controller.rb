@@ -10,12 +10,21 @@ class TodosController < ApplicationController
 
   def create
     @todo = Todo.new(todo_params)
-    if @todo.save
-      flash[:notice] = "Todo has been created."
-      redirect_to @todo
-    else
-      flash[:alert] = "Todo has not been created."
-      render :new
+    respond_to do |format|
+      format.html do
+        if @todo.save
+          flash[:notice] = "Todo has been created."
+          redirect_to @todo
+        else
+          flash[:alert] = "Todo has not been created."
+          render :new
+        end
+      end
+      format.js do
+        unless @todo.save
+          render text: @todo.errors.full_messages.join, status: :unprocessable_entity
+        end
+      end
     end
   end
 
@@ -29,12 +38,21 @@ class TodosController < ApplicationController
 
   def update
     @todo = Todo.find(params[:id])
-    if @todo.update(todo_params)
-      flash[:notice] = "Todo has been updated."
-      redirect_to @todo
-    else
-      flash[:alert] = "Todo has not been updated."
-      render action: "edit"
+    respond_to do |format|
+      format.html do
+        if @todo.update(todo_params)
+          flash[:notice] = "Todo has been updated."
+          redirect_to @todo
+        else
+          flash[:alert] = "Todo has not been updated."
+          render action: "edit"
+        end
+      end
+      format.js do
+        unless @todo.update(todo_params)
+          render text: @todo.errors.full_messages.join, status: :unprocessable_entity
+        end
+      end
     end
   end
 

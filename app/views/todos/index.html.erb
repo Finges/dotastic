@@ -1,7 +1,7 @@
 <h2>Todos</h2>
-<ul>
+<ul class="todo_list">
   <% @todos.each do |todo| %>
-    <li><%= link_to todo.todo, todo %></li>
+    <li id="<%= todo.id %>"><%= link_to todo.todo, edit_todo_path(todo), remote: true %></li>
   <% end %>
 </ul>
-<%= link_to "New Todo", new_todo_path %>
+<%= link_to "New Todo", new_todo_path, remote: true, id: :new_link %>
