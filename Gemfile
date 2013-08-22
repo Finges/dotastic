@@ -29,8 +29,12 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+
+gem 'figaro'
 # Omniauth Github for authentication
 gem 'omniauth-github'
+
+gem 'rails_12factor', group: :production
 
 group :test, :development do
   gem 'rspec-rails'
