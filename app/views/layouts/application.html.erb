@@ -51,5 +51,16 @@
       <%= yield %>
     </div>
     <%= javascript_include_tag "application" %>
+    <script>
+      $(function(){
+        $(".todo_status").change(function() {
+          $.ajax({
+            url: "/todos/done",
+            data: "id="+$(this).val(),
+            type: "POST"
+          });
+        });
+      });
+</script>
   </body>
 </html>

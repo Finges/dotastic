@@ -1,1 +1,4 @@
-<li><%= link_to todo.todo, todo %></li>
+<li>
+   <%= check_box_tag 'todo_status', todo.id, todo.done, class: 'todo_status' %>
+   <%= link_to todo.todo, todo %>
+</li>

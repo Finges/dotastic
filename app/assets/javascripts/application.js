@@ -17,6 +17,6 @@
 //= require_tree .
 
 $(document).foundation();
-$(document).ajaxError((event, xhr, settings, exception) ->
-    alert.xhr.responseText
-    )
+
+
+

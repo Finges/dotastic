@@ -1,0 +1,8 @@
+if ($('li#todo_<%= @todo.id %> > input').prop('checked'))
+{
+  $('li#todo_<%= @todo.id %>').appendTo($('ul#completed_todos'));
+}
+else
+{
+  $('li#todo_<%= @todo.id %>').appendTo($('ul#incomplete_todos'));
+}

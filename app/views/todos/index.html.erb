@@ -1,7 +1,22 @@
-<h2>Todos</h2>
-<ul class="todo_list">
+<%= link_to "New Todo", new_todo_path, remote: true, id: :new_link %>
+<h3>Todos:</h2>
+<ul class="incomplete_todos" id="incomplete_todos">
   <% @todos.each do |todo| %>
-    <li id="<%= todo.id %>"><%= link_to todo.todo, edit_todo_path(todo), remote: true %></li>
+    <% if todo.done != true %>
+    <li id="todo_<%= todo.id %>">
+    <%= check_box_tag 'todo_status', todo.id, todo.done, class: 'todo_status' %>
+    <%= link_to todo.todo, edit_todo_path(todo), remote: true %></li>
+  <% end %>
+<% end %>
+</ul>
+<h3>Completed: </h2>
+<ul class="completed_todos" id="completed_todos">
+  <% @todos.each do |todo| %>
+    <% if todo.done == true  %>
+      <li id="todo_<%= todo.id %>">
+      <%= check_box_tag 'todo_status', todo.id, todo.done, class: 'todo_status' %>
+      <%= link_to todo.todo, edit_todo_path(todo), remote: true %></li>
+    <% end %>
   <% end %>
 </ul>
-<%= link_to "New Todo", new_todo_path, remote: true, id: :new_link %>
+

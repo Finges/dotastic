@@ -1,7 +1,11 @@
 Dotastic::Application.routes.draw do
   root 'todos#index'
 
-  resources :todos
+  resources :todos do
+    collection do
+      post 'done'
+    end
+  end
   match 'auth/:providers/callback', to: 'sessions#create', via: :get
   match 'auth/failure', to: redirect("/"), via: :get
   match 'signout', to: 'sessions#destroy', via: :get, as: 'signout'
