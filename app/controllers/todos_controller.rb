@@ -1,7 +1,7 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: [:show, :edit, :destroy, :update]
   def index
-    @todos = Todo.all
+    @todos = Todo.where(user_id: session[:user_id]).order("created_at ASC")
   end
 
   def new
@@ -10,6 +10,7 @@ class TodosController < ApplicationController
 
   def create
     @todo = Todo.new(todo_params)
+    @todo.user_id = session[:user_id]
     respond_to do |format|
       format.html do
         if @todo.save
