@@ -1,5 +1,5 @@
 Dotastic::Application.routes.draw do
-  root 'todos#index'
+  root 'home#index'
 
   resources :todos do
     collection do
